@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import "./dialog.style.css"
 import { IconTrash } from "../icons";
+import FormularioDialog from "../formularioDialog";
 
-export default function Dialog({isOpen, onClose, paragrafo}) {
+export default function Dialog({isOpen, onClose}) {
     
     const dialogRef = useRef(null)    
 
@@ -10,6 +11,10 @@ export default function Dialog({isOpen, onClose, paragrafo}) {
     const openDialog = () => {
         dialogRef.current.showModal();
     };
+    // "Close" button closes the dialog
+    const closeDialog = () => {
+        dialogRef.current.close();
+    }
 
     useEffect(() => {
         if (isOpen) {
@@ -19,9 +24,10 @@ export default function Dialog({isOpen, onClose, paragrafo}) {
         }
     }, [isOpen])
 
-    // "Close" button closes the dialog
-    const closeDialog = () => {
-        dialogRef.current.close();
+
+    const addTodo = () => {
+        console.log("teste f")
+        onClose()
     }
 
     
@@ -33,9 +39,7 @@ export default function Dialog({isOpen, onClose, paragrafo}) {
                         <i className="material-icons">&#xe5cd;</i>
                     </button>
                 </div>
-                <p>
-                    {paragrafo}
-                </p>
+                <FormularioDialog onSubmit={addTodo} />
             </dialog>
            
         </>

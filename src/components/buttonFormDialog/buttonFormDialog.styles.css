@@ -1,0 +1,18 @@
+.button-formDialog {
+    cursor: pointer;
+    max-width: 100%;
+    width: 125px;
+    padding: 12px 16px;
+    border: none;
+    outline: none;
+    border-radius: 24px;
+    font-weight: 700;
+    line-height: 150%;
+    background-color: #877EED;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+}
+
+.button-formDialog:hover {
+    background-color: #544ACB;
+}

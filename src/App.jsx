@@ -82,7 +82,7 @@ function App() {
             })}
           </ToDoList>
           <Footer>
-            <Dialog isOpen={showDialog} onClose={toggleShowDialog} paragrafo={"Faça elevar, o cosmo do seu coração, todo mal combater, despertar o poder"}/>
+            <Dialog isOpen={showDialog} onClose={toggleShowDialog} />
             <FabButton onClick={toggleShowDialog}>
               <IconPlus />
             </FabButton>
