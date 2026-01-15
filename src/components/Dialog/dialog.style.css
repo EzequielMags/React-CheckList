@@ -1,0 +1,36 @@
+::backdrop {
+    background-image: linear-gradient(
+      45deg,
+      #000
+    );
+    opacity: 0.55;
+
+  }
+
+
+.dialog {
+  border: none;
+  border-radius: 16px;
+  outline: none;
+  background-color: #1e1e1e;
+  padding: 16px;
+}
+
+.container-button-close {
+  text-align: right;
+}
+
+.button-close {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dialog .material-icons {
+  color: #fff;
+  font-size: 20px;
+}
+
+.dialog p {
+  color: #fff;
+}
