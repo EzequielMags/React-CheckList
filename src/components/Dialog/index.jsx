@@ -3,7 +3,7 @@ import "./dialog.style.css"
 import { IconTrash } from "../icons";
 import FormularioDialog from "../formularioDialog";
 
-export default function Dialog({isOpen, onClose}) {
+export default function Dialog({isOpen, onClose, addTodo}) {
     
     const dialogRef = useRef(null)    
 
@@ -25,10 +25,7 @@ export default function Dialog({isOpen, onClose}) {
     }, [isOpen])
 
 
-    const addTodo = () => {
-        console.log("teste f")
-        onClose()
-    }
+    
 
     
     return (
@@ -39,7 +36,7 @@ export default function Dialog({isOpen, onClose}) {
                         <i className="material-icons">&#xe5cd;</i>
                     </button>
                 </div>
-                <FormularioDialog onSubmit={addTodo} />
+                <FormularioDialog  onSubmit={addTodo} />
             </dialog>
            
         </>
