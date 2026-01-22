@@ -1,11 +1,14 @@
-import { useEffect, useRef } from "react";
+import { use, useEffect, useRef } from "react";
 import "./dialog.style.css"
 import { IconTrash } from "../icons";
 import FormularioDialog from "../formularioDialog";
+import TodoContext from "../TodoContext";
 
 export default function Dialog({isOpen, onClose, addTodo}) {
     
-    const dialogRef = useRef(null)    
+    const dialogRef = useRef(null)  
+    
+    const {selectedTodo} = use(TodoContext)
 
     // "Show the dialog" button opens the dialog modally
     const openDialog = () => {
@@ -24,7 +27,13 @@ export default function Dialog({isOpen, onClose, addTodo}) {
         }
     }, [isOpen])
 
-
+    //  useEffect(() => {
+    //      const dialog = dialogRef.current
+    //      dialog?.addEventListener("close", onClose)
+    //      return () => {
+    //          dialog?.removeEventListener("close", onClose)
+    //      }
+    //  }, [onClose]) 
     
 
     
@@ -36,7 +45,7 @@ export default function Dialog({isOpen, onClose, addTodo}) {
                         <i className="material-icons">&#xe5cd;</i>
                     </button>
                 </div>
-                <FormularioDialog  onSubmit={addTodo} />
+                <FormularioDialog  onSubmit={addTodo} defaultValue={selectedTodo?.description}/>
             </dialog>
            
         </>

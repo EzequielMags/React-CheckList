@@ -1,4 +1,4 @@
-import { use, useState } from "react"
+import { use } from "react"
 import { ChecklistsWrapper } from "./components/ChecklistsWrapper"
 import { Container } from "./components/Container"
 import Dialog from "./components/Dialog"
@@ -9,6 +9,7 @@ import { Heading } from "./components/Heading"
 import { IconPlus, IconSchool } from "./components/icons"
 import TodoContext from "./components/TodoContext"
 import TodoGroup from "./components/TodoGroup"
+import EmptyTodo from "./components/EmptyTodo"
 
 // const todos = [
 //   {
@@ -53,19 +54,28 @@ import TodoGroup from "./components/TodoGroup"
 
 function App() {
 
-  const [showDialog, setShowDialog] = useState(false)
+
   const { 
     todos,
     addTodo,
+    openFormTodoDialog,
+    closeFormTodoDialog,
+    showDialog,
+    selectedTodo,
+    editTodo
   } = use(TodoContext)
 
-  const toggleShowDialog = () => {
-    setShowDialog(!showDialog)
-  }
 
   const handleFormSubmit = (formData) => {
-  addTodo(formData)
-  toggleShowDialog()
+    if (selectedTodo) {
+      editTodo(formData)
+      
+      
+    } else {
+      addTodo(formData)
+    }
+
+    closeFormTodoDialog()
   }
 
   
@@ -79,6 +89,7 @@ function App() {
         </Header>
         <ChecklistsWrapper>
           <TodoGroup heading="Para estudar" items={todos.filter(todo => !todo.completed)} />
+            {todos.length == 0 && <EmptyTodo />}
           <TodoGroup heading="Concluído" items={todos.filter(todo => todo.completed)} />
           {/* <SubHeading>Para estudar</SubHeading>
           <ToDoList>
@@ -93,8 +104,8 @@ function App() {
             })}
           </ToDoList> */}
           <Footer>
-            <Dialog isOpen={showDialog} onClose={toggleShowDialog} addTodo={handleFormSubmit} />
-            <FabButton onClick={toggleShowDialog}>
+            <Dialog isOpen={showDialog} onClose={closeFormTodoDialog} addTodo={handleFormSubmit} />
+            <FabButton onClick={() => openFormTodoDialog()}>
               <IconPlus />
             </FabButton>
           </Footer>
